@@ -1,0 +1,14 @@
+server:
+  port: 8088
+spring:
+  jackson:
+    time-zone: GMT+8
+    date-format: yyyy-MM-dd HH:mm:ss  #jackson时间格式化
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: 123456
+    url: jdbc:mysql://localhost:3306/iccs
+mybatis:
+  config-location: classpath:mybatis.xml
+  mapper-locations: classpath:com/example/iccs/dao/mapper/*.xml

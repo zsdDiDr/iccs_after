@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.iccs.dao.IAdminDao">
+
+    <select id="findUser" resultType="user" parameterType="user">
+        <![CDATA[
+            select * from user where 1=1
+        ]]>
+        <if test="username != null and username !=''">
+            and username = #{username}
+        </if>
+        <if test="password != null and password !=''">
+            and password = #{password}
+        </if>
+    </select>
+
+    <insert id="insert" parameterType="user">
+        insert into user
+            (uid,username,password,nickname,sex,phone,email,birthday,remarks)
+        values
+            (#{uid},#{username},#{password},#{nickname},#{sex},#{phone},#{email},#{birthday},#{remarks})
+    </insert>
+
+    <update id="update" parameterType="user">
+        update user set
+                uid=#{uid},
+                username=#{username},
+                password=#{password},
+                nickname=#{nickname},
+                sex=#{sex},
+                phone=#{phone},
+                email=#{email},
+                birthday=#{birthday},
+                remarks=#{remarks}
+        where 1=1
+        <if test="username != null and username != ''">
+            and username = #{username}
+        </if>
+    </update>
+
+
+</mapper>

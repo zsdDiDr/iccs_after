@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.iccs.dao.IServerDao">
+
+    <select id="findServer" resultType="server" parameterType="server">
+        <![CDATA[
+            select * from server where 1=1
+        ]]>
+        <if test="token != null and token != ''">
+            and token = #{token}
+        </if>
+    </select>
+
+    <insert id="addServer" parameterType="server">
+        <![CDATA[
+            insert into server
+                (sname,token,createDate,creator,ip)
+            values
+                (#{sname},#{token},#{createDate},#{creator},#{ip})
+        ]]>
+    </insert>
+
+    <select id="deviceCount" parameterType="server" resultType="Integer">
+        <![CDATA[
+            select count(*) from device where 1=1
+        ]]>
+            <if test="sid != 0">
+                and sid = #{sid}
+            </if>
+    </select>
+
+    <update id="updateServer" parameterType="server">
+        update server set
+            sid=#{sid},
+            sname=#{sname},
+            token=#{token},
+            createDate=#{createDate},
+            creator=#{creator},
+            ip=#{ip},
+            count=#{count}
+        where 1=1
+        <if test="sid != 0">
+            and sid = #{sid}
+        </if>
+    </update>
+
+
+
+
+</mapper>

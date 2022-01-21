@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<!-- 配置文件的根元素 -->
+<configuration>
+
+    <!--设置：定义mybatis的一些全局属性-->
+    <!--jdbcTypeForNull:当添加数据的时候，部分字段为null时，自动填入null，不加配置则会报错-->
+    <settings>
+<!--        <setting name="logImpl" value="LOG4J"/>-->
+        <!--PARTIAL[默认]，FULL[全匹配]，NONE[不匹配]-->
+        <setting name="autoMappingBehavior" value="FULL"/>
+        <setting name="jdbcTypeForNull" value="NULL"/>
+        <setting name="cacheEnabled" value="true"/>
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+    </settings>
+
+    <!--配置别名-->
+    <typeAliases>
+        <package name="com.example.iccs.bean"/>
+    </typeAliases>
+
+    <!--指定分页助手的数据库-->
+    <plugins>
+        <plugin interceptor="com.github.pagehelper.PageInterceptor">
+            <property name="helperDialect" value="mysql"/>
+        </plugin>
+    </plugins>
+
+
+</configuration>
